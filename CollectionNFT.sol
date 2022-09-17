@@ -18,7 +18,7 @@
 */
 
 // File: @openzeppelin/contracts/utils/introspection/IERC165.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @dev Interface of the ERC165 standard, as defined in the
  * https://eips.ethereum.org/EIPS/eip-165[EIP].
@@ -41,7 +41,7 @@ interface IERC165 {
 }
 
 // File: @openzeppelin/contracts/token/ERC721/IERC721.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @dev Required interface of an ERC721 compliant contract.
  */
@@ -181,7 +181,7 @@ interface IERC721 is IERC165 {
 
 
 // File: @openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -207,7 +207,7 @@ interface IERC721Enumerable is IERC721 {
 
 
 // File: @openzeppelin/contracts/utils/introspection/ERC165.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @dev Implementation of the {IERC165} interface.
  *
@@ -235,7 +235,7 @@ abstract contract ERC165 is IERC165 {
 
 
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 /**
  * @dev String operations.
@@ -304,7 +304,7 @@ library Strings {
 
 
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Collection of functions related to the address type
@@ -523,7 +523,7 @@ library Address {
 
 
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 
 /**
@@ -551,7 +551,7 @@ interface IERC721Metadata is IERC721 {
 
 
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 /**
  * @title ERC721 token receiver interface
@@ -577,7 +577,7 @@ interface IERC721Receiver {
 }
 
 // File: @openzeppelin/contracts/utils/Context.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @dev Provides information about the current execution context, including the
  * sender of the transaction and its data. While these are generally available
@@ -588,10 +588,10 @@ pragma solidity ^0.8.4;
  *
  * This contract is only required for intermediate, library-like contracts.
  */
-//abstract contract Context {
-  //  function _msgSender() internal view virtual returns (address) {
-   //     return msg.sender;
-  //  }
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
 
     function _msgData() internal view virtual returns (bytes calldata) {
         return msg.data;
@@ -600,7 +600,7 @@ pragma solidity ^0.8.4;
 
 
 // File: @openzeppelin/contracts/token/ERC721/ERC721.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including
  * the Metadata extension, but not including the Enumerable extension, which is available separately as
@@ -1005,7 +1005,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
 
 
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 
 
@@ -1167,7 +1167,7 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
 
 
 // File: @openzeppelin/contracts/access/Ownable.sol
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 /**
  * @dev Contract module which provides a basic access control mechanism, where
  * there is an account (an owner) that can be granted exclusive access to
@@ -1180,8 +1180,8 @@ pragma solidity ^0.8.4;
  * `onlyOwner`, which can be applied to your functions to restrict their use to
  * the owner.
  */
-//abstract contract Ownable is Context {
-//    address private _owner;
+abstract contract Ownable is Context {
+    address private _owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
@@ -1236,12 +1236,12 @@ pragma solidity ^0.8.4;
 
 pragma solidity >=0.7.0 <0.9.0;
 
-contract Bitk2Poof is ERC721Enumerable, Ownable {
+contract CollectionNFT is ERC721Enumerable, Ownable {
   using Strings for uint256;
 
   string baseURI;
   string public baseExtension = ".json";
-  uint256 public cost = 0.1 ether;
+  uint256 public cost = 0.01 ether;
   uint256 public maxSupply = 10000;
   uint256 public maxMintAmount = 20;
   bool public paused = true;
@@ -1348,7 +1348,7 @@ contract Bitk2Poof is ERC721Enumerable, Ownable {
     // This will pay HashLips 5% of the initial sale.
     // You can remove this if you want, or keep it in to support HashLips and his channel.
     // =============================================================================
-    (bool hs, ) = payable(0xCba2591b7F8A22849f73dE2dded0C48F66003650).call{value: address(this).balance * 5 / 100}("");
+    (bool hs, ) = payable(0xCba2591b7F8A22849f73dE2dded0C48F66003650).call{value: address(this).balance * 3 / 100}("");
     require(hs);
     // =============================================================================
     
