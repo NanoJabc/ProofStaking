@@ -25,11 +25,11 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
 
-contract POSreward is ERC20, ERC20Burnable, Ownable {
+contract TokenReward is ERC20, ERC20Burnable, Ownable {
 
   mapping(address => bool) controllers;
   
-  constructor() ERC20("POSreward", "POSR") { }
+  constructor() ERC20("TokenReward", "TRPR") { }
 
   function mint(address to, uint256 amount) external {
     require(controllers[msg.sender], "Only controllers can mint");
